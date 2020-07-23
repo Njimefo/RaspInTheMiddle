@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> RaspiInTheMiddle Login Page</title>
+    <style>
+        html, body {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            background: #d9f0af;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        form {
+            background: white;
+            width: 40%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+            font-family: lato;
+            position: relative;
+            color: #333;
+            border-radius: 10px;
+        }
+
+        form header {
+            background: #4CAF50;
+            padding: 30px 20px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 10px 10px 0 0;
+        }
+
+        form input {
+            margin-left: 20px;
+            display: inline-block;
+            margin-top: 30px;
+            margin-bottom: 5px;
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 70%;
+            height: 45px;
+        }
+
+        form span {
+            color: #FF3838;
+            size: A3;
+
+        }
+
+        form .help {
+            margin-left: 20px;
+            font-size: 0.8em;
+            color: #777;
+            font-weight: bold;
+        }
+
+        form button {
+            position: relative;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font-family: inherit;
+            color: white;
+            background: #4CAF50;
+            outline: none;
+            border: none;
+            padding: 5px 15px;
+            font-size: 1.3em;
+            font-weight: 400;
+            border-radius: 3px;
+            box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.4);
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+        }
+
+        form button:hover {
+            background: #ff5252;
+        }
+
+        form p {
+            text-decoration-color: #ff5252;
+            font-weight: bolder;
+            font-size: 13px;
+            color: #ff5252;
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="/register">
+    <header>RaspiInTheMiddle : Einloggen</header>
+    <input type="text" placeholder="Name des Studenten" pattern=".{4,10}" name="username" required>
+    <span>*</span>
+    <div class="help">Benutzername soll mindestens 3 Charakter haben</div>
+    <input type="text" placeholder="Passwort des Studenten" pattern=".{6,80}" name="userpassword" required>
+    <span>*</span>
+    <div class="help">Passwort soll mindestens 6 Charakter haben</div>
+    <input type="password" placeholder="Passwort des Administrators" pattern=".{3,80}" name="adminpassword" required>
+    <span>*</span>
+    <div class="help">Achten Sie auf die Groß- und Kleinbuchstaben</div>
+    <br>
+    <div class="help">Felder mit (*) sind Pflichtfelder</div>
+    <br>
+    <button>Senden</button>
+    <p>{{ notification }}</p>
+</form>
+</body>
+</body>
+</html>

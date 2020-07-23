@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<title>RaspiInTheMiddle 2</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styleStartpage.css') }}">
+<html>
+<head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link re="stylesheet" type="text/css" href="static/css/jqtree.css">
+    <script src="static/js/startpage.js"></script>
+
+
+</head>
+<body onunload="PageIsUnloading()">
+
+<div style="margin: 0%; padding: 0%; background-color: #e1f2e2">
+
+    <div style="margin: 0%; padding: 0%; background-color: #4CAF50">
+        <h1 align="center">RaspiInTheMiddle</h1>
+        <p align="center">In Ingenieurinformatik wird der Datenaustausch &uuml;berwacht</p>
+    </div>
+    <br>
+    <p id="logText" align="right" style="font-size:140%"> Eingeloggt als {{ user["Username"] }}</p>
+    <menu>
+        <div class="dropdown" style="padding: 0px; margin: 1px;">
+            <button class="dropbtn">Optionen</button>
+            <div class="dropdown-content"><a href='/login'>Einloggen</a> <a href="/">Ausloggen</a> <a href="/iptables">IP-Tables
+                Verwalten</a></div>
+        </div>
+        <div class="dropdown" style="padding: 0px; margin: 0px;">
+            <button class="dropbtn">Links</button>
+            <div class="dropdown-content"><a
+                    href="https://www.youtube.com/watch?v=WGJC5vT5YJo&list=PL6gx4Cwl9DGDdduy0IPDDHYnUx66Vc4ed">Netzwerk
+                Schnüffler-Video</a> <a href="#">Beenden</a> <a href="#">Link 3</a></div>
+        </div>
+    </menu>
+    <br>
+    <fieldset id="filters" disabled="disabled">
+        <legend>Filter</legend>
+        <input id="sourceIp" type="text" placeholder="Source IP" style="width: 11%">
+        <input id="sourcePort" type="text" placeholder="Source Port" style="width: 11%">
+        <input id="destIp" type="text" placeholder="Destination IP" style="width: 11%">
+        <input id="destPort" type="text" placeholder="Destination Port" style="width: 11%">
+
+        <div class="autocomplete" style="width:11%;">
+            <input id="firmInput" type="text" name="myFirm" placeholder="Firma">
+        </div>
+        <select name="protocol" style="width: 11%">
+            <option value="tcp" selected="selected">TCP</option>
+            <option value="udp">UDP</option>
+            <option value="icmp">ICMP</option>
+        </select>
+        <button id="applyFilter" style="background-color: #4CAF50; width: 12.5%; height: 70px" onclick="ApplyFilters()"> Anwenden
+        </button>
+        <button id="resetFilter" style="background-color: #4CAF50; width: 12.5%; height: 70px" onclick="DeleteFilters()"> Loesschen
+        </button>
+    </fieldset>
+    <br>
+    <div id="tableWrapper" onscroll="AddNewRows(30)">
+        <table id="packetInfos">
+            <thead>
+            <tr>
+                <th>Nr</th>
+                <th>Zeit</th>
+                <th>Source Hostname</th>
+                <th>Source MAC Addresse</th>
+                <th>Source IP</th>
+                <th>Source Port</th>
+                <th>Destination Hostname</th>
+                <th>Destination MAC Addresse</th>
+                <th>Destination IP</th>
+                <th>Destination Port</th>
+                <th>Protokoll</th>
+                <th>Länge</th>
+                <th>Firma</th>
+            </tr>
+            </thead>
+            <tbody id="packetInfosBody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div align="right">
+        <button id="capture" style="background-color: #4CAF50; width: 15%; height: 50px" onclick="StartCapture()">
+            Starten
+        </button>
+        <button id="stopCapture" style="background-color: #4CAF50; width: 15%; height: 50px" onclick="StopCapture()"> Beenden</button>
+        <button id="saveBtn" style="background-color: #4CAF50; width: 15%; height: 50px" onclick="SaveData()"
+                disabled="disabled">
+            Speichern
+        </button>
+
+    </div>
+    <div style="width: 100%;" id="dataTreeView">
+
+    </div>
+</div>
+<script>
+    autocomplete(document.getElementById("firmInput"), firms);
+</script>
+</body>
+</html>

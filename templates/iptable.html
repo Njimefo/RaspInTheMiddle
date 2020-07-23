@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<title>RaspiInTheMiddle 2</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styleStartpage.css') }}">
+<html>
+<head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link re="stylesheet" type="text/css" href="static/css/jqtree.css">
+    <script src="static/js/iptable.js"></script>
+
+
+</head>
+<body >
+
+<div style="margin: 0%; padding: 0%; background-color: #e1f2e2">
+    <div style="margin: 0%; padding: 0%; background-color: #4CAF50">
+        <h1 align="center">RaspiInTheMiddle</h1>
+        <p align="center">In Ingenieurinformatik wird der Datenaustausch &uuml;berwacht</p>
+    </div>
+    <br>
+    <p>Was wollen Sie tun? </p>
+    <select id="selector" onselect="SelectionChanged()">
+        <option value="0" selected="true">Blockierte und zu blockierende Ip-Adressen verwalten</option>
+        <option value="1">Blockierte und zu blockierende Ip-Ranges verwalten</option>
+    </select>
+    <p id="logText" align="right" style="font-size:140%"> Eingeloggt als Admin</p>
+    <menu>
+        <div class="dropdown" style="padding: 0px; margin: 1px;">
+            <button class="dropbtn">Optionen</button>
+            <div class="dropdown-content"><a href='/'>Ausloggen</a> <a href="/">Ausloggen</a> <a href="#">Infos</a></div>
+        </div>
+        <div class="dropdown" style="padding: 0px; margin: 0px;">
+            <button class="dropbtn">Links</button>
+            <div class="dropdown-content"><a
+                    href="https://www.youtube.com/watch?v=WGJC5vT5YJo&list=PL6gx4Cwl9DGDdduy0IPDDHYnUx66Vc4ed">Netzwerk
+                Schnüffler-Video</a></div>
+        </div>
+    </menu>
+    <br>
+    <fieldset id="filters" >
+        <div id="ipRangeBlock" style="display: block" disabled="disabled">
+            <legend>Ip Range blockieren</legend>
+            <input id="vonIp" type="text" placeholder="Von Ip" style="width: 30%">
+            <input id="bisIp" type="text" placeholder="Bis Ip" style="width: 30%">
+            <button style="background-color: #4CAF50; width: 12.5%; height: 70px" onclick="BlockIpRanges()"> Blockieren</button>
+        </div>
+        <div id="ipAdressBlock" style="display: block">
+            <legend>Ip Range blockieren</legend>
+            <input id="IpInput" type="text" placeholder="Zu blockierende Ip-Adresse" style="width: 40%">
+            <button style="background-color: #4CAF50; width: 12.5%; height: 70px" onclick="BlockIp()"> Blockieren</button>
+        </div>
+    </fieldset>
+    <br>
+    <div id="tableWrapper">
+        <table id="packetInfos">
+            <thead>
+            <tr>
+                <th>Nr</th>
+                <th>Zeit</th>
+                <th>IP Adresse/Range</th>
+                <th>Blockiert von</th>
+            </tr>
+            </thead>
+            <tbody id="packetInfosBody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div align="right">
+        <button id="capture" style="background-color: #4CAF50; width: 15%; height: 50px" onclick="UnblockElement()">
+            Entblockieren
+        </button>
+
+    </div>
+</div>
+</body>
+</html>
