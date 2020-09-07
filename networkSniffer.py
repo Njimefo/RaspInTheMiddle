@@ -54,8 +54,6 @@ Hexdump: https://pypi.python.org/pypi/hexdump
 Credits: anatoly techtonik <techtonik@gmail.com>, George Schizas, Ian Land
 Lizenz: Public Domain
 
-# Autor: Albert Pavlov
-# Jahr: 2017
 """
 
 import socket  # importieren natives socket-Modul
